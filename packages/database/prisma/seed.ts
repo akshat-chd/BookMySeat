@@ -14,8 +14,8 @@ export const movies = [
     genre: "Action",
     duration: 128,
     releaseDate: new Date("2024-07-24T19:00:00Z"),
-    posterUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop",
-    bannerUrl: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1600&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w800/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg",
+    bannerUrl: "https://image.tmdb.org/t/p/original/yDHYTfA3R0jFYba16ZBRWUP1lNl.jpg"
   },
   {
     id: "dune-part-two",
@@ -25,8 +25,8 @@ export const movies = [
     genre: "Sci-Fi",
     duration: 167,
     releaseDate: new Date("2024-02-27T14:30:00Z"),
-    posterUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=800&auto=format&fit=crop",
-    bannerUrl: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1600&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w800/1pdfLvkbY9ohJlCjQH2JGvwMEVA.jpg",
+    bannerUrl: "https://image.tmdb.org/t/p/original/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg"
   },
   {
     id: "inside-out-2",
@@ -36,8 +36,8 @@ export const movies = [
     genre: "Animation",
     duration: 96,
     releaseDate: new Date("2024-06-11T18:00:00Z"),
-    posterUrl: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=800&auto=format&fit=crop",
-    bannerUrl: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1600&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w800/vpnVM9B6NMmQpWeZvzRxHXd2lN1.jpg",
+    bannerUrl: "https://image.tmdb.org/t/p/original/stKGOm8UyhuLPR9sXLtqDteAKSQ.jpg"
   },
   {
     id: "oppenheimer",
@@ -47,8 +47,8 @@ export const movies = [
     genre: "Drama",
     duration: 181,
     releaseDate: new Date("2023-07-19T20:00:00Z"),
-    posterUrl: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=800&auto=format&fit=crop",
-    bannerUrl: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1600&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w800/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+    bannerUrl: "https://image.tmdb.org/t/p/original/fm6KqXpk3M2HVveHwCrBRoOoA0i.jpg"
   },
   {
     id: "coldplay-tour",
@@ -58,8 +58,8 @@ export const movies = [
     genre: "Concert",
     duration: 120,
     releaseDate: new Date("2025-10-03T20:30:00Z"),
-    posterUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop",
-    bannerUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1600&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w800/c3gOty5oT12U152o7Bntm5740m7.jpg",
+    bannerUrl: "https://image.tmdb.org/t/p/original/8vUuKzLq6qD5qL4Z05x0N37V0jT.jpg"
   },
   {
     id: "spiderman-spiderverse",
@@ -69,8 +69,8 @@ export const movies = [
     genre: "Animation",
     duration: 140,
     releaseDate: new Date("2025-09-20T16:00:00Z"),
-    posterUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=800&auto=format&fit=crop",
-    bannerUrl: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=1600&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w800/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+    bannerUrl: "https://image.tmdb.org/t/p/original/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg"
   },
   {
     id: "furiosa",
@@ -80,8 +80,8 @@ export const movies = [
     genre: "Action",
     duration: 148,
     releaseDate: new Date("2024-05-22T21:00:00Z"),
-    posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop",
-    bannerUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1600&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w800/iADOJ8Zymht2JPMoy3R7xceZprc.jpg",
+    bannerUrl: "https://image.tmdb.org/t/p/original/wNAhuOZ3Zf84jCIlrcI6JhgmY5q.jpg"
   },
   {
     id: "interstellar",
@@ -91,8 +91,8 @@ export const movies = [
     genre: "Sci-Fi",
     duration: 169,
     releaseDate: new Date("2024-11-20T17:00:00Z"),
-    posterUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop",
-    bannerUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w800/gEU2QlsUUQ1mniVf2ndzIG74U0.jpg",
+    bannerUrl: "https://image.tmdb.org/t/p/original/xJHwPuEOpdjq3xqTpz7Z8oR8w6G.jpg"
   }
 ];
 
