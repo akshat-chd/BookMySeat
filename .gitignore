@@ -1,0 +1,11 @@
+node_modules
+.next
+dist
+.turbo
+.env
+.env.local
+coverage
+packages/database/generated
+apps/web/.next
+apps/web/out
+npm-debug.log*

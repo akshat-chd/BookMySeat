@@ -1,0 +1,22 @@
+{
+  "name": "@flashdrop/order-worker",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@flashdrop/database": "file:../../packages/database",
+    "@flashdrop/shared": "file:../../packages/shared",
+    "kafkajs": "^2.2.4",
+    "redis": "^5.6.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.3"
+  }
+}

@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ReservationStatus {
+  ACTIVE
+  CONVERTED
+  EXPIRED
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+}
+
+enum SeatStatus {
+  AVAILABLE
+  LOCKED
+  SOLD
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id            String        @id
+  email         String        @unique
+  passwordHash  String
+  name          String
+  role          Role          @default(USER)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  reservations  Reservation[]
+  orders        Order[]
+}
+
+model Event {
+  id            String        @id
+  name          String
+  description   String
+  price         Int
+  posterUrl     String?
+  bannerUrl     String?
+  genre         String?
+  duration      Int?          // in minutes
+  releaseDate   DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  seats         Seat[]
+  reservations  Reservation[]
+  orders        Order[]
+}
+
+model Seat {
+  id            String        @id
+  eventId       String
+  row           String
+  number        Int
+  status        SeatStatus    @default(AVAILABLE)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  event         Event         @relation(fields: [eventId], references: [id])
+  reservations  Reservation[]
+  orders        Order[]
+
+  @@unique([eventId, row, number])
+  @@index([eventId, status])
+}
+
+model Reservation {
+  id         String            @id
+  eventId    String
+  userId     String
+  status     ReservationStatus
+  expiresAt  DateTime
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+  event      Event             @relation(fields: [eventId], references: [id])
+  user       User              @relation(fields: [userId], references: [id])
+  order      Order?
+  seats      Seat[]
+
+  @@index([eventId, status])
+  @@index([userId, createdAt])
+}
+
+model Order {
+  id            String       @id
+  reservationId String       @unique
+  userId        String
+  eventId       String
+  status        OrderStatus
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  reservation   Reservation  @relation(fields: [reservationId], references: [id])
+  event         Event        @relation(fields: [eventId], references: [id])
+  user          User         @relation(fields: [userId], references: [id])
+  seats         Seat[]
+
+  @@index([eventId, createdAt])
+  @@index([userId, createdAt])
+}
+
+model ProcessedEvent {
+  eventId     String   @id
+  eventType   String
+  processedAt DateTime @default(now())
+}
+

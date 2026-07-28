@@ -1,0 +1,27 @@
+{
+  "name": "flashdrop",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run prisma:generate && npm --workspace @flashdrop/shared run build && npm --workspace @flashdrop/database run build && npm --workspace @flashdrop/api run build && npm --workspace @flashdrop/order-worker run build && npm --workspace @flashdrop/socket-gateway run build && npm --workspace @flashdrop/web run build",
+    "typecheck": "npm run prisma:generate && npm --workspace @flashdrop/shared run typecheck && npm --workspace @flashdrop/database run typecheck && npm --workspace @flashdrop/api run typecheck && npm --workspace @flashdrop/order-worker run typecheck && npm --workspace @flashdrop/socket-gateway run typecheck && npm --workspace @flashdrop/web run typecheck",
+    "dev:web": "npm --workspace @flashdrop/web run dev",
+    "dev:api": "npm --workspace @flashdrop/api run dev",
+    "dev:worker": "npm --workspace @flashdrop/order-worker run dev",
+    "dev:socket": "npm --workspace @flashdrop/socket-gateway run dev",
+    "prisma:generate": "npm --workspace @flashdrop/database run prisma:generate",
+    "prisma:migrate": "npm --workspace @flashdrop/database run prisma:migrate",
+    "db:seed": "npm --workspace @flashdrop/database run seed"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "docker": "^1.0.0"
+  }
+}

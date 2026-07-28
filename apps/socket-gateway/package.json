@@ -1,0 +1,21 @@
+{
+  "name": "@flashdrop/socket-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@flashdrop/shared": "file:../../packages/shared",
+    "redis": "^5.6.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.3"
+  }
+}
