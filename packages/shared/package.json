@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
+    "nodemailer": "^9.0.3",
     "zod": "^4.0.5"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^8.0.1"
   }
 }

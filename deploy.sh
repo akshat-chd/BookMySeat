@@ -25,6 +25,8 @@ DEMO_PRODUCT_ID=demo-product
 DEMO_INITIAL_STOCK=100
 RESERVATION_TTL_SECONDS=120
 JWT_SECRET=f98efea0398ef0aef03ae9d8e3fd83a0f12c98d
+EMAIL_USER=akshatpib@gmail.com
+EMAIL_PASS="uhcb ldzo esfn xowg"
 EOF
 
 echo "Setting up Nginx Config"

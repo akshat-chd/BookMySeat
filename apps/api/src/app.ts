@@ -19,7 +19,8 @@ import {
   type AuthResponse,
   type ReservationCreatedEvent,
   type ReservationDetailsResponse,
-  type ReservationResponse
+  type ReservationResponse,
+  sendOtpEmail
 } from "@flashdrop/shared";
 import { HttpError } from "./lib/http-error";
 import { attachRequestId, requestLogger } from "./lib/request-context";
@@ -147,8 +148,8 @@ export function createApp(ctx: ApiContext) {
       // Store in Redis with 5 minutes (300 seconds) expiration
       await ctx.redis.setEx(otpKey, 300, otp);
 
-      // Simulate sending email without returning OTP to client
-      console.log(`\n[EMAIL SERVICE MOCK] 📧 Sending OTP to ${email}: ${otp}\n`);
+      // Send actual email using Nodemailer
+      await sendOtpEmail(email, otp);
 
       res.json({ message: "OTP sent successfully" });
     } catch (error) {

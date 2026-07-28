@@ -8,7 +8,8 @@ import {
   reservationRoom,
   eventRoom,
   SOCKET_EVENTS_CHANNEL,
-  type ReservationCreatedEvent
+  type ReservationCreatedEvent,
+  sendOrderConfirmation
 } from "@flashdrop/shared";
 import { Kafka } from "kafkajs";
 import { createClient } from "redis";
@@ -147,12 +148,13 @@ async function bootstrap() {
         }
       });
 
-      // Simulate sending a confirmation email to the user asynchronously
-      console.log(`\n[EMAIL SERVICE MOCK] 📧 Sending Order Confirmation Email`);
-      console.log(`- To User ID: ${event.userId}`);
-      console.log(`- Order ID: ${orderId}`);
-      console.log(`- Seats: ${seatIds.join(", ")}`);
-      console.log(`- Event ID: ${concertEventId}\n`);
+      // Send actual ticket email using Nodemailer
+      const eventName = await prisma.event.findUnique({ where: { id: concertEventId } }).then(e => e?.name || "FlashDrop Event");
+      await sendOrderConfirmation(event.userId, {
+        orderId,
+        eventName,
+        seats: seatIds
+      });
       
       await publishSocket(redis, env.SOCKET_REDIS_CHANNEL || SOCKET_EVENTS_CHANNEL, {
         room: eventRoom(concertEventId),
