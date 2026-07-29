@@ -3,6 +3,20 @@ set -e
 
 cd /home/ubuntu/bookmyseat
 
+# Create 1GB swap if not already present (prevents OOM kills on t3.micro)
+if [ ! -f /swapfile ]; then
+  echo "Creating 1GB swap file..."
+  sudo fallocate -l 1G /swapfile
+  sudo chmod 600 /swapfile
+  sudo mkswap /swapfile
+  sudo swapon /swapfile
+  echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+else
+  sudo swapon /swapfile 2>/dev/null || true
+fi
+echo "Swap status:"
+free -m
+
 echo "Setting up .env"
 cat > .env << 'EOF'
 NODE_ENV=production
@@ -88,20 +102,31 @@ then
 fi
 sudo npm install -g pm2
 
-echo "Building Application"
+echo "Stopping existing PM2 processes to free RAM"
+pm2 delete all || true
+
+echo "Building Application (excluding web - built locally)"
 npm install && npm cache clean --force
-npm run build && rm -rf apps/web/.next/cache
+npm run prisma:generate
+npm --workspace @flashdrop/shared run build
+npm --workspace @flashdrop/database run build
+npm --workspace @flashdrop/api run build
+npm --workspace @flashdrop/order-worker run build
+npm --workspace @flashdrop/socket-gateway run build
 
 echo "Seeding Database"
 npx prisma db push --force-reset --schema packages/database/prisma/schema.prisma
 npm run db:seed
 
 echo "Starting Apps with PM2"
-pm2 delete all || true
 pm2 start npm --name "api" -- run start --workspace @flashdrop/api
 pm2 start npm --name "worker" -- run start --workspace @flashdrop/order-worker
 pm2 start npm --name "socket" -- run start --workspace @flashdrop/socket-gateway
 pm2 start npm --name "web" -- run start --workspace @flashdrop/web
+pm2 save
+
+echo "Setting up PM2 startup"
+sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u ubuntu --hp /home/ubuntu 2>/dev/null || true
 pm2 save
 
 echo "Restarting Nginx"
