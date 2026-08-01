@@ -18,7 +18,7 @@ echo "Swap status:"
 free -m
 
 echo "Setting up .env"
-cat > .env << 'EOF'
+cat > .env << EOF
 NODE_ENV=production
 POSTGRES_USER=flashdrop
 POSTGRES_PASSWORD=flashdropprodpw123
