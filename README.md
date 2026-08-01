@@ -1,4 +1,4 @@
-# 🎟️ BookMySeat / FlashDrop
+# 🎟️ BookMySeat 
 
 > **Distributed, High-Concurrency Event & Movie Ticket Reservation Platform**  
 > Built with Next.js, Node.js, PostgreSQL, Redis, Apache Kafka, Socket.IO, Nginx, and PM2.
