@@ -39,8 +39,8 @@ DEMO_PRODUCT_ID=demo-product
 DEMO_INITIAL_STOCK=100
 RESERVATION_TTL_SECONDS=120
 JWT_SECRET=f98efea0398ef0aef03ae9d8e3fd83a0f12c98d
-EMAIL_USER=akshatpib@gmail.com
-EMAIL_PASS="uhcb ldzo esfn xowg"
+BREVO_SMTP_USER=${BREVO_SMTP_USER:-"akshatpib@gmail.com"}
+BREVO_SMTP_PASS=${BREVO_SMTP_PASS:-"your_production_brevo_smtp_password"}
 EOF
 
 echo "Setting up Nginx Config"

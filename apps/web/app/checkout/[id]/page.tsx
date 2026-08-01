@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { io, type Socket } from "socket.io-client";
+import QRCode from "react-qr-code";
 import type { SaleUiStatus } from "@flashdrop/shared";
 import { API_BASE_URL, getReservation } from "../../../lib/api";
 
@@ -152,13 +153,24 @@ export default function CheckoutPage() {
                 </div>
                 <h3 className="text-2xl font-extrabold text-[var(--text-main)] mb-2">Tickets Confirmed! 🎉</h3>
                 <p className="text-sm text-[var(--text-secondary)] mb-6">{message}</p>
-                <Link
-                  href="/"
-                  className="inline-flex items-center gap-2 bg-[var(--text-main)] text-white font-semibold py-3 px-8 rounded-xl hover:bg-[var(--text-secondary)] transition text-sm"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-                  Back to Home
-                </Link>
+                
+                <div className="flex justify-center mb-6">
+                  <div className="p-4 bg-white rounded-2xl shadow-sm border border-[var(--line)]">
+                    <QRCode value={id as string} size={160} level="H" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <Link
+                    href="/tickets"
+                    className="inline-flex justify-center items-center gap-2 bg-[var(--text-main)] text-white font-semibold py-3 px-8 rounded-xl hover:bg-[var(--text-secondary)] transition text-sm"
+                  >
+                    View My Tickets
+                  </Link>
+                  <Link href="/" className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">
+                    Back to Home
+                  </Link>
+                </div>
               </div>
             )}
 

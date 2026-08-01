@@ -1,11 +1,11 @@
 import nodemailer from "nodemailer";
 
-// Using the credentials provided by the user
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp-relay.brevo.com",
+  port: 587,
   auth: {
-    user: process.env.EMAIL_USER || "akshatpib@gmail.com",
-    pass: process.env.EMAIL_PASS || "uhcb ldzo esfn xowg"
+    user: process.env.BREVO_SMTP_USER || process.env.EMAIL_USER,
+    pass: process.env.BREVO_SMTP_PASS || process.env.EMAIL_PASS
   }
 });
 
@@ -62,7 +62,9 @@ export async function sendOrderConfirmation(toEmail: string, orderDetails: { ord
         </table>
         
         <div style="margin-top: 30px; text-align: center;">
-          <p style="color: #888; font-size: 14px;">Present this email or the QR code in your dashboard at the venue.</p>
+          <p style="color: #888; font-size: 14px; margin-bottom: 15px;">Present this QR code at the venue:</p>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${orderDetails.orderId}" alt="Ticket QR Code" style="margin: 0 auto; display: block; border-radius: 10px; border: 1px solid #eaeaea; padding: 10px; background: white;" />
+          <p style="color: #888; font-size: 14px; margin-top: 15px;">Or find it in your FlashDrop dashboard.</p>
         </div>
       </div>
     `
